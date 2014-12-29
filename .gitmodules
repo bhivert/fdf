@@ -1,0 +1,9 @@
+[submodule "libft"]
+	path = libft
+	url = https://bhivert@bitbucket.org/bhivert/libft
+[submodule "lib3d"]
+	path = lib3d
+	url = https://bhivert@bitbucket.org/bhivert/lib3d
+[submodule "libui"]
+	path = libui
+	url = https://bhivert@bitbucket.org/bhivert/libui
