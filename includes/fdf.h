@@ -9,4 +9,14 @@
 #include "lib3d.h"
 #include <fcntl.h>
 
+typedef struct	s_env
+{
+	int			ac;
+	char		**av;
+	t_container	*file;
+}				t_env;
+
+
+int		fdf_get_file(t_env *e);
+
 #endif

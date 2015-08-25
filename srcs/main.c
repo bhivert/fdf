@@ -1,34 +1,36 @@
 
 #include "fdf.h"
 
-t_container	*fdf_get_file(char **av)
+int			main(int ac, char **av)
 {
-	int			fd;
-	char		*line;
-	t_container	*file;
-	int			value;
+	t_env	env;
 
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-		return (ft_printf("%s unable to open %s.\n", av[0], av[1]), NULL);
-	if (!(file = ft_new_container(VECTOR, sizeof(t_container *))))
-		return (NULL);
-	while (ft_gnl(fd, &line) > 0)
-	{
-		ft_push_back(file, ft_new_container(VECTOR, sizeof(int)));
-		while (ft_sscanf(line, "%d %s", &value, line) > 1)
-			ft_push_back(ft_at_index(file, ft_size(file) - 1), &value);
-		free(line);
-	}
-	return (file);
-}
-
-int		main(int ac, char **av)
-{
-
-	if (ac < 2)
-		return (ft_printf("%s file\n", av[0]), EXIT_SUCCESS);
-	if (!fdf_get_file(av))
+	env.ac = ac;
+	env.av = av;
+	if (env.ac < 2)
+		return (ft_printf("%s file\n", env.av[0]), EXIT_SUCCESS);
+	if (fdf_get_file(&env) == -1)
 		return (EXIT_FAILURE);
 
-	return (0);
+
+
+
+	size_t	i;
+	size_t	j;
+	t_container	*line;
+
+	i = -1;
+
+	while (j = -1, ++i < ft_size(env.file))
+	{
+		line = ft_at_index(env.file, i);
+		while (++j < ft_size(*(t_container **)line))
+		{
+			ft_putnbr(*((int *)ft_at_index(*(t_container **)line, j)));
+			ft_putchar(' ');
+		}
+		ft_putchar('\n');
+	}
+
+	return (EXIT_SUCCESS);
 }
