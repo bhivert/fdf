@@ -7,3 +7,6 @@
 [submodule "libui"]
 	path = libui
 	url = https://bhivert@bitbucket.org/bhivert/libui
+[submodule "libfd"]
+	path = libfd
+	url = https://bhivert@bitbucket.org/bhivert/libfd.git
