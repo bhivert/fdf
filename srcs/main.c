@@ -9,7 +9,8 @@ int			main(int ac, char **av)
 	env.av = av;
 	if (env.ac < 2)
 		return (ft_printf("%s file\n", env.av[0]), EXIT_SUCCESS);
-	if (fdf_get_file(&env) == -1)
+	env.max_line = 0;
+	if ((fdf_get_file(&env) == -1) || (fdf_create_ui(&env) == -1))
 		return (EXIT_FAILURE);
 
 
@@ -31,6 +32,6 @@ int			main(int ac, char **av)
 		}
 		ft_putchar('\n');
 	}
-
+	ui_loop(env.win);
 	return (EXIT_SUCCESS);
 }

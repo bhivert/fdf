@@ -23,7 +23,9 @@ else
 	CFLAGS	=	-Wall -Wextra $(INCS_FLAGS) -g3
 endif
 
-DEPENDS		=	
+DEPENDS		=	libui/libui.a \
+			lib3d/lib3d.a \
+			libft/libft.a \
 
 LIBS_DIR	=	-Llibui \
 			-Llib3d \
@@ -32,6 +34,10 @@ LIBS_DIR	=	-Llibui \
 LIBS		=	-lui \
 			-l3d \
 			-lft \
+			-lmlx \
+			-lXext \
+			-lX11 \
+			-lpthread \
 
 INCS_FLAGS	=	-Iincludes \
 
@@ -40,7 +46,8 @@ SUB_MAKE	=	libui \
 			libft \
 
 SRCS_DIR	=	srcs
-SRCS_SRCS	=	$(SRCS_DIR)/fdf_get_file.c \
+SRCS_SRCS	=	$(SRCS_DIR)/fdf_create_ui.c \
+			$(SRCS_DIR)/fdf_get_file.c \
 			$(SRCS_DIR)/main.c \
 
 SRCS		=	$(SRCS_SRCS) \
