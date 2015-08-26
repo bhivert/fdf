@@ -29,8 +29,9 @@ typedef struct	s_bresenham
 	int			err_dec;
 }				t_bresenham;
 
-int		fdf_get_file(t_env *e);
-int		fdf_create_ui(t_env *e);
-void	fdf_bresenham(t_img *img, t_vertex *v0, t_vertex *v1);
+int				fdf_get_file(t_env *e);
+int				fdf_create_ui(t_env *e);
+void			fdf_bresenham(t_img *img, t_vertex *v0, t_vertex *v1);
+void			fdf_draw(void *env);
 
 #endif

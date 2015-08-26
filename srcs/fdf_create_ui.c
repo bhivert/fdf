@@ -19,7 +19,7 @@ int		fdf_create_ui(t_env *e)
 	if (e->img_id == -1)
 		return (ft_printf("%s unable to create image.\n"), -1);
 	ui_widget_set_color(e->win, e->img_id, 0x000000);
-	ui_widget_set_hook_param(e->win, e->img_id, e->img_id, e);
-	ui_window_set_key_hook(e->win, &fdf_key_hook, NULL);
+	ui_window_set_key_hook(e->win, &fdf_key_hook, e);
+	ui_window_set_user_thread(e->win, &fdf_draw, e);
 	return (0);
 }
