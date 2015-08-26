@@ -46,7 +46,8 @@ SUB_MAKE	=	libui \
 			libft \
 
 SRCS_DIR	=	srcs
-SRCS_SRCS	=	$(SRCS_DIR)/fdf_create_ui.c \
+SRCS_SRCS	=	$(SRCS_DIR)/fdf_bresenham.c \
+			$(SRCS_DIR)/fdf_create_ui.c \
 			$(SRCS_DIR)/fdf_get_file.c \
 			$(SRCS_DIR)/main.c \
 
