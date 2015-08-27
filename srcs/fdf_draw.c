@@ -7,18 +7,16 @@ static void	fdf_convert_to_iso_proj(t_env *e, t_vertex *v0, t_vertex *v1)
 	t_img		*img;
 
 
-	v0_tmp = vertex_mult_matrix(v0, e->iso_proj);
-	*v1 = vertex_mult_matrix(v1, e->iso_proj);
-	v0_tmp = vertex_mult_matrix(&v0_tmp, e->scale);
-	*v1 = vertex_mult_matrix(v1, e->scale);
+	v0_tmp = vertex_mult_matrix(v0, e->scale);
 	v0_tmp = vertex_mult_matrix(&v0_tmp, e->translate);
-	*v1 = vertex_mult_matrix(v1, e->translate);
-
 	v0_tmp = vertex_mult_matrix(&v0_tmp, e->rot_X_matrix);
-	*v1 = vertex_mult_matrix(v1, e->rot_X_matrix);
-
 	v0_tmp = vertex_mult_matrix(&v0_tmp, e->rot_Z_matrix);
+	v0_tmp = vertex_mult_matrix(&v0_tmp, e->iso_proj);
+	*v1 = vertex_mult_matrix(v1, e->scale);
+	*v1 = vertex_mult_matrix(v1, e->rot_X_matrix);
 	*v1 = vertex_mult_matrix(v1, e->rot_Z_matrix);
+	*v1 = vertex_mult_matrix(v1, e->translate);
+	*v1 = vertex_mult_matrix(v1, e->iso_proj);
 
 	img = ui_widget_get_timg(e->win, e->img_id);
 	fdf_bresenham(img, &v0_tmp, v1);
@@ -30,12 +28,12 @@ static void	fdf_manage_segment(t_env *e, int x, int y, int value)
 	t_vertex	v1;
 	t_container	**line;
 
-	v0 = new_vertex(x * 10, y * 10, value, NULL);
+	v0 = new_vertex(x, y, value, NULL);
 	line = ft_at_index(e->file, y);
 	if (ft_at_index(*line, x + 1))
 	{
 		value = *(int *)ft_at_index(*line, x + 1);
-		v1 = new_vertex((x + 1) * 10, y * 10, value, NULL);
+		v1 = new_vertex((x + 1), y, value, NULL);
 		fdf_convert_to_iso_proj(e, &v0, &v1);
 	}
 	if ((line = ft_at_index(e->file, y + 1)))
@@ -43,7 +41,7 @@ static void	fdf_manage_segment(t_env *e, int x, int y, int value)
 		if (ft_at_index(*line, x))
 		{
 			value = *(int *)ft_at_index(*line, x);
-			v1 = new_vertex(x * 10, (y + 1) * 10, value, NULL);
+			v1 = new_vertex(x, (y + 1), value, NULL);
 			fdf_convert_to_iso_proj(e, &v0, &v1);
 		}
 	}
@@ -53,8 +51,8 @@ static void	fdf_generate_matrix(t_env *e)
 {
 	e->iso_proj = matrix_iso_proj();
 	e->translate = matrix_trans( \
-			(e->win->size.width >> 1) - ((e->max_line >> 1) * 10), \
-			(e->win->size.height >> 1) - ((ft_size(e->file) >> 1) * 10), 0);
+			(e->win->size.width >> 1) - ((e->max_line >> 1)), \
+			(e->win->size.height >> 1) - ((ft_size(e->file) >> 1)), 0);
 	e->scale = matrix_scale(e->scale_v, e->scale_v, e->scale_v);
 	e->rot_X_matrix = matrix_rotx(rad(e->rot_X));
 	e->rot_Z_matrix = matrix_rotz(rad(e->rot_Z));
@@ -74,7 +72,7 @@ static void	fdf_free_matrix(t_env *e)
 	e->rot_Z_matrix = NULL;
 }
 
-void		fdf_draw(void *env)
+void		fdf_draw(int id, void *env)
 {
 	t_env		*e;
 	size_t		x;
@@ -82,6 +80,7 @@ void		fdf_draw(void *env)
 	t_container	*line;
 	int			value;
 
+	(void)id;
 	e = (t_env *)env;
 	y = -1;
 	fdf_generate_matrix(e);

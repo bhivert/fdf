@@ -11,6 +11,7 @@ void		init_env(t_env *e, int ac, char **av)
 	e->img_id = -1;
 	e->iso_proj = NULL;
 	e->translate = NULL;
+	e->init_rot_translate = NULL;
 	e->scale_v = 1;
 	e->scale = NULL;
 	e->rot_X = 0;

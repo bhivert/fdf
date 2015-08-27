@@ -18,6 +18,7 @@ typedef struct	s_env
 	int			img_id;
 	double		**iso_proj;
 	double		**translate;
+	double		**init_rot_translate;
 	int			scale_v;
 	double		**scale;
 	int			rot_X;
@@ -40,6 +41,6 @@ typedef struct	s_bresenham
 int				fdf_get_file(t_env *e);
 int				fdf_create_ui(t_env *e);
 void			fdf_bresenham(t_img *img, t_vertex *v0, t_vertex *v1);
-void			fdf_draw(void *env);
+void			fdf_draw(int w_id, void *env);
 
 #endif
