@@ -6,12 +6,17 @@ static void	fdf_convert_to_iso_proj(t_env *e, t_vertex *v0, t_vertex *v1)
 	t_vertex	v0_tmp;
 	t_img		*img;
 
+
 	v0_tmp = vertex_mult_matrix(v0, e->iso_proj);
 	*v1 = vertex_mult_matrix(v1, e->iso_proj);
 	v0_tmp = vertex_mult_matrix(&v0_tmp, e->scale);
 	*v1 = vertex_mult_matrix(v1, e->scale);
 	v0_tmp = vertex_mult_matrix(&v0_tmp, e->translate);
 	*v1 = vertex_mult_matrix(v1, e->translate);
+
+
+
+
 	img = ui_widget_get_timg(e->win, e->img_id);
 	fdf_bresenham(img, &v0_tmp, v1);
 }
@@ -47,7 +52,9 @@ static void	fdf_generate_matrix(t_env *e)
 	e->translate = matrix_trans( \
 			(e->win->size.width >> 1) - ((e->max_line >> 1) * 10), \
 			(e->win->size.height >> 1) - ((ft_size(e->file) >> 1) * 10), 0);
-	e->scale = matrix_scale(1, 1, 1);
+	e->scale = matrix_scale(e->scale_v, e->scale_v, e->scale_v);
+	e->rot_X_matrix = matrix_rotx(rad(e->rot_X));
+	e->rot_Z_matrix = matrix_rotz(rad(e->rot_Z));
 }
 
 static void	fdf_free_matrix(t_env *e)
@@ -58,6 +65,10 @@ static void	fdf_free_matrix(t_env *e)
 	e->translate = NULL;
 	free_matrix(e->scale);
 	e->scale = NULL;
+	free_matrix(e->rot_X_matrix);
+	e->rot_X_matrix = NULL;
+	free_matrix(e->rot_Z_matrix);
+	e->rot_Z_matrix = NULL;
 }
 
 void		fdf_draw(void *env)

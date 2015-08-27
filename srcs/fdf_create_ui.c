@@ -3,11 +3,21 @@
 
 void	fdf_key_hook(void *param, int code, int type)
 {
-	(void)param;
+	t_env	*e;
+
+	e = (t_env *)param;
 	if (type == 2)
 		return ;
 	if (code == UI_KEY_ESC)
 		exit(EXIT_SUCCESS);
+	else if (code == UI_KEY_RIGHT || code == UI_KEY_PAD_6)
+		e->rot_Z = (e->rot_Z + 15) % 360;
+	else if (code == UI_KEY_LEFT || code == UI_KEY_PAD_4)
+		e->rot_Z = (e->rot_Z + 360 - 15) % 360;
+	else if (code == UI_KEY_UP || code == UI_KEY_PAD_8)
+		e->rot_X = (e->rot_X + 15) % 360;
+	else if (code == UI_KEY_DOWN || code == UI_KEY_PAD_5)
+		e->rot_X = (e->rot_X + 360 - 15) % 360;
 }
 
 int		fdf_create_ui(t_env *e)
