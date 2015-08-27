@@ -19,7 +19,7 @@ ifeq ($(DEBUG), 0)
 	CC	=	gcc
 	CFLAGS	=	-Wall -Wextra -Werror $(INCS_FLAGS) -O3
 else
-	CC	=	cc
+	CC	=	clang
 	CFLAGS	=	-Wall -Wextra $(INCS_FLAGS) -g3
 endif
 
@@ -34,6 +34,7 @@ LIBS_DIR	=	-Llibui \
 LIBS		=	-lui \
 			-l3d \
 			-lft \
+			-lm \
 			-lmlx \
 			-lXext \
 			-lX11 \

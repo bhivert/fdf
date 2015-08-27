@@ -9,6 +9,9 @@ void		init_env(t_env *e, int ac, char **av)
 	e->max_line = 0;
 	e->win = NULL;
 	e->img_id = -1;
+	e->iso_proj = NULL;
+	e->translate = NULL;
+	e->scale = NULL;
 }
 
 int			main(int ac, char **av)
