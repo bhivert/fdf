@@ -14,7 +14,8 @@ static void	fdf_convert_to_iso_proj(t_env *e, t_vertex *v0, t_vertex *v1)
 	v0_tmp = vertex_mult_matrix(&v0_tmp, e->translate);
 	*v1 = vertex_mult_matrix(v1, e->translate);
 
-
+	v0_tmp = vertex_mult_matrix(&v0_tmp, e->rot_X_matrix);
+	*v1 = vertex_mult_matrix(v1, e->rot_Z_matrix);
 
 
 	img = ui_widget_get_timg(e->win, e->img_id);
