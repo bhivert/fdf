@@ -1,6 +1,8 @@
 
 #include "fdf.h"
 
+#include "stdio.h"
+
 static void	fdf_convert_to_proj(t_env *e, t_vertex *vtx)
 {
 
@@ -44,7 +46,7 @@ static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 static void		fdf_generate_matrix(t_env *e)
 {
 	e->trans_mtx0 = matrix_trans(-((e->max_line >> 1) + (e->max_line % 2)), \
-				-(((ft_size(e->file) >> 1) + (ft_size(e->file) % 2))), \
+				-((int)(ft_size(e->file) >> 1) + (int)(ft_size(e->file) % 2)), \
 				0);
 	e->trans_mtx1 = matrix_trans(e->win->size.width >> 1, \
 				e->win->size.height >> 1, \

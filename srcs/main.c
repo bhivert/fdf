@@ -31,7 +31,6 @@ int			main(int ac, char **av)
 		return (ft_printf("%s file\n", env.av[0]), EXIT_SUCCESS);
 	if ((fdf_get_file(&env) == -1) || (fdf_create_ui(&env) == -1))
 		return (EXIT_FAILURE);
-	ft_printf("%d\n", env.max_line);
 	ui_loop(env.win);
 	return (EXIT_SUCCESS);
 }

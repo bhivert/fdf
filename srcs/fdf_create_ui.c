@@ -15,9 +15,9 @@ void	fdf_key_hook(void *param, int code, int type)
 	else if (code == UI_KEY_LEFT || code == UI_KEY_PAD_4)
 		e->rot_Z = (e->rot_Z + 360 - 15) % 360;
 	else if (code == UI_KEY_UP || code == UI_KEY_PAD_8)
-		e->rot_X = (e->rot_X + 15) % 360;
-	else if (code == UI_KEY_DOWN || code == UI_KEY_PAD_5)
 		e->rot_X = (e->rot_X + 360 - 15) % 360;
+	else if (code == UI_KEY_DOWN || code == UI_KEY_PAD_5)
+		e->rot_X = (e->rot_X + 15) % 360;
 	else if (code == UI_KEY_PUP || code == UI_KEY_PAD_P)
 		++e->scaling;
 	else if (code == UI_KEY_PDW || code == UI_KEY_PAD_M)

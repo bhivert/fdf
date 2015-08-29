@@ -14,7 +14,7 @@ typedef struct	s_env
 	int			ac;
 	char		**av;
 	t_container	*file;
-	size_t		max_line;
+	int			max_line;
 	int			min_value;
 	int			max_value;
 	t_win		*win;
