@@ -9,13 +9,6 @@
 #include <fcntl.h>
 #include <limits.h>
 
-typedef struct	s_cam
-{
-	t_vector	pos;
-	t_vector	dir;
-	t_vector	up;
-}				t_cam;
-
 typedef struct	s_env
 {
 	int			ac;
@@ -24,9 +17,17 @@ typedef struct	s_env
 	size_t		max_line;
 	int			min_value;
 	int			max_value;
-	t_cam		*cam;
 	t_win		*win;
 	int			img_id;
+	int			rot_X;
+	int			rot_Z;
+	int			scaling;
+	double		**scale_mtx;
+	double		**trans_mtx0;
+	double		**trans_mtx1;
+	double		**rot_X_mtx;
+	double		**rot_Z_mtx;
+	double		**iso_proj;
 }				t_env;
 
 typedef struct	s_bresenham
@@ -43,7 +44,6 @@ typedef struct	s_bresenham
 int				fdf_get_file(t_env *e);
 int				fdf_create_ui(t_env *e);
 void			fdf_bresenham(t_img *img, t_vertex *v0, t_vertex *v1);
-t_cam			*init_camera(t_env *e);
 void			fdf_draw(int w_id, void *env);
 
 #endif

@@ -24,7 +24,7 @@ int		fdf_get_file(t_env *e)
 			if (ft_push_back(tmp, &value), out == 1)
 				break ;
 		}
-		e->max_line = (ft_size(tmp) < e->max_line) ? ft_size(tmp) : e->max_line;
+		e->max_line = (ft_size(tmp) > e->max_line) ? ft_size(tmp) : e->max_line;
 		free(line);
 	}
 	return (close(fd), 0);
