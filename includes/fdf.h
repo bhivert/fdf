@@ -16,15 +16,6 @@ typedef struct	s_env
 	size_t		max_line;
 	t_win		*win;
 	int			img_id;
-	double		**iso_proj;
-	double		**translate;
-	double		**init_rot_translate;
-	int			scale_v;
-	double		**scale;
-	int			rot_X;
-	int			rot_Z;
-	double		**rot_X_matrix;
-	double		**rot_Z_matrix;
 }				t_env;
 
 typedef struct	s_bresenham
