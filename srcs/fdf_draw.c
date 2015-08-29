@@ -23,7 +23,7 @@ static void	fdf_convert_to_proj(t_env *e, t_vertex *v0, t_vertex *v1)
 
 //	fdf_bresenham(img, &v0_tmp, v1);
 
-static void	fdf_manage_segment(t_env *e, int x, int y, int value)
+static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 {
 	t_vertex	v0;
 	t_vertex	v1;
@@ -48,17 +48,18 @@ static void	fdf_manage_segment(t_env *e, int x, int y, int value)
 	}
 }
 
-static void	fdf_generate_matrix(t_env *e)
+static void		fdf_generate_matrix(t_env *e)
 {
 	(void)e;
 }
 
-static void	fdf_free_matrix(t_env *e)
+static double	***fdf_free_matrix(t_env *e)
 {
 	(void)e;
+	return (NULL);
 }
 
-void		fdf_draw(int id, void *env)
+void			fdf_draw(int id, void *env)
 {
 	t_env		*e;
 	size_t		x;

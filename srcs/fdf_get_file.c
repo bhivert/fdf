@@ -19,6 +19,8 @@ int		fdf_get_file(t_env *e)
 		ft_push_back(e->file, &tmp);
 		while ((out = ft_sscanf(line, "%d %s", &value, line)))
 		{
+			e->min_value = (value < e->min_value) ? value : e->min_value;
+			e->max_value = (value > e->max_value) ? value : e->max_value;
 			if (ft_push_back(tmp, &value), out == 1)
 				break ;
 		}

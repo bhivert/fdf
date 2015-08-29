@@ -10,18 +10,18 @@ void	fdf_key_hook(void *param, int code, int type)
 		return ;
 	if (code == UI_KEY_ESC)
 		exit(EXIT_SUCCESS);
-	else if (code == UI_KEY_RIGHT || code == UI_KEY_PAD_6)
-		e->rot_Z = (e->rot_Z + 15) % 360;
-	else if (code == UI_KEY_LEFT || code == UI_KEY_PAD_4)
-		e->rot_Z = (e->rot_Z + 360 - 15) % 360;
-	else if (code == UI_KEY_UP || code == UI_KEY_PAD_8)
-		e->rot_X = (e->rot_X + 360 - 15) % 360;
-	else if (code == UI_KEY_DOWN || code == UI_KEY_PAD_5)
-		e->rot_X = (e->rot_X + 15) % 360;
-	else if (code == UI_KEY_PUP || code == UI_KEY_PAD_P)
-		e->scale_v += 1;
-	else if (code == UI_KEY_PDW || code == UI_KEY_PAD_M)
-		e->scale_v -= (e->scale_v - 1 > 0) ? 1 : 0;
+//	else if (code == UI_KEY_RIGHT || code == UI_KEY_PAD_6)
+//		e->rot_Z = (e->rot_Z + 15) % 360;
+//	else if (code == UI_KEY_LEFT || code == UI_KEY_PAD_4)
+//		e->rot_Z = (e->rot_Z + 360 - 15) % 360;
+//	else if (code == UI_KEY_UP || code == UI_KEY_PAD_8)
+//		e->rot_X = (e->rot_X + 360 - 15) % 360;
+//	else if (code == UI_KEY_DOWN || code == UI_KEY_PAD_5)
+//		e->rot_X = (e->rot_X + 15) % 360;
+//	else if (code == UI_KEY_PUP || code == UI_KEY_PAD_P)
+//		e->scale_v += 1;
+//	else if (code == UI_KEY_PDW || code == UI_KEY_PAD_M)
+//		e->scale_v -= (e->scale_v - 1 > 0) ? 1 : 0;
 }
 
 int		fdf_create_ui(t_env *e)

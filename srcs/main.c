@@ -7,6 +7,9 @@ void		init_env(t_env *e, int ac, char **av)
 	e->av = av;
 	e->file = NULL;
 	e->max_line = 0;
+	e->min_value = INT_MAX;
+	e->max_value = INT_MIN;
+	e->cam = NULL;
 	e->win = NULL;
 	e->img_id = -1;
 }
