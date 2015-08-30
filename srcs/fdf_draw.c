@@ -45,11 +45,11 @@ static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 
 static void		fdf_generate_matrix(t_env *e)
 {
-	e->trans_mtx0 = matrix_trans(-((e->max_line >> 1) + (e->max_line % 2)), \
-				-((int)(ft_size(e->file) >> 1) + (int)(ft_size(e->file) % 2)), \
+	e->trans_mtx0 = matrix_trans(-((double)e->max_line / 2.0), \
+				-((double)ft_size(e->file) / 2.0), \
 				0);
-	e->trans_mtx1 = matrix_trans(e->win->size.width >> 1, \
-				e->win->size.height >> 1, \
+	e->trans_mtx1 = matrix_trans((double)e->win->size.width / 2.0, \
+				(double)e->win->size.height / 2.0, \
 				0);
 	e->scale_mtx = matrix_scale(e->scaling, e->scaling, e->scaling);
 	e->rot_X_mtx = matrix_rotx(rad(e->rot_X));
