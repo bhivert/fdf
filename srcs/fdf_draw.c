@@ -19,9 +19,9 @@ static void	fdf_convert_to_proj(t_env *e, t_vertex *vtx)
 //	dir = new_vector(1, 0, 0, NULL);
 //	up = new_vector(0, 0, 1, NULL);
 //	M2V = matrix_view(&cam, &dir, &up);
-//	V2P = matrix_proj(rad(45), (double)e->win->size.width / (double)e->win->size.height, \
-//			50, 100);
-//	*vtx = vector_mult_matrix(vtx, M2V);
+/*	V2P = matrix_proj(rad(45), (double)e->win->size.width / (double)e->win->size.height, \
+			50, 100);
+*///	*vtx = vector_mult_matrix(vtx, M2V);
 //	*vtx = vector_mult_matrix(vtx, V2P);
 //	free_matrix(M2V);
 //	free_matrix(V2P);
@@ -98,6 +98,8 @@ static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 
 static void		fdf_generate_matrix(t_env *e)
 {
+	t_vector	up;
+
 	e->trans_mtx0 = matrix_trans(-((double)e->max_line / 2.0), \
 				-((double)ft_size(e->file) / 2.0), \
 				0);
@@ -106,7 +108,9 @@ static void		fdf_generate_matrix(t_env *e)
 				0);
 	e->scale_mtx = matrix_scale(e->scaling, e->scaling, e->scaling);
 	e->rot_X_mtx = matrix_rotx(rad(e->rot_X));
-	e->rot_Z_mtx = matrix_rotz(rad(e->rot_Z));
+	up = new_vector(0, 0, 1, NULL);
+	up = vector_mult_matrix(&up, e->rot_X_mtx);
+	e->rot_Z_mtx = matrix_axis_rot(up.x, up.y, up.z, rad(e->rot_Z));
 	e->iso_proj = matrix_iso_proj();
 }
 
