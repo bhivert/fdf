@@ -5,27 +5,6 @@
 
 static void	fdf_convert_to_proj(t_env *e, t_vertex *vtx)
 {
-//	t_vector	cam;
-//	t_vector	dir;
-//	t_vector	up;
-//	double		**M2V;
-//	double		**V2P;
-//
-//	*vtx = vertex_mult_matrix(vtx, e->trans_mtx0);
-//	*vtx = vertex_mult_matrix(vtx, e->rot_X_mtx);
-//	*vtx = vertex_mult_matrix(vtx, e->rot_Z_mtx);
-//
-//	cam = new_vector(0, (double)(ft_size(e->file) * 2), 0, NULL);
-//	dir = new_vector(1, 0, 0, NULL);
-//	up = new_vector(0, 0, 1, NULL);
-//	M2V = matrix_view(&cam, &dir, &up);
-/*	V2P = matrix_proj(rad(45), (double)e->win->size.width / (double)e->win->size.height, \
-			50, 100);
-*///	*vtx = vector_mult_matrix(vtx, M2V);
-//	*vtx = vector_mult_matrix(vtx, V2P);
-//	free_matrix(M2V);
-//	free_matrix(V2P);
-
 	*vtx = vertex_mult_matrix(vtx, e->trans_mtx0);
 	*vtx = vertex_mult_matrix(vtx, e->rot_X_mtx);
 	*vtx = vertex_mult_matrix(vtx, e->rot_Z_mtx);

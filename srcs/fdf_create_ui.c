@@ -1,7 +1,16 @@
 
 #include "fdf.h"
 
-void	fdf_key_hook(void *param, int code, int type)
+
+
+static void	fdf_exit(t_env *e)
+{
+	ft_set_content_destroy(e->file, (void(*)(void *))&ft_delete_container);
+	ft_delete_container(&e->file);
+	exit(EXIT_SUCCESS);
+}
+
+void		fdf_key_hook(void *param, int code, int type)
 {
 	t_env	*e;
 
@@ -9,7 +18,7 @@ void	fdf_key_hook(void *param, int code, int type)
 	if (type == 2)
 		return ;
 	if (code == UI_KEY_ESC)
-		exit(EXIT_SUCCESS);
+		fdf_exit(e);
 	else if (code == UI_KEY_RIGHT || code == UI_KEY_PAD_6)
 		e->rot_Z = (e->rot_Z + 15) % 360;
 	else if (code == UI_KEY_LEFT || code == UI_KEY_PAD_4)
@@ -24,7 +33,7 @@ void	fdf_key_hook(void *param, int code, int type)
 		e->scaling -= (e->scaling > 1) ? 1 : 0;
 }
 
-int		fdf_create_ui(t_env *e)
+int			fdf_create_ui(t_env *e)
 {
 	if (!(e->win = ui_new_window(e->av[0], 1600, 1200)))
 		return (ft_printf("%s unable to create windows.\n", e->av[0]), -1);
