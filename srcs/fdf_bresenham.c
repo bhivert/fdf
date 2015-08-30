@@ -44,17 +44,16 @@ static void		fdf_bresenham_vertical_octant(t_img *img, t_bresenham *b, \
 	color_inc = color_mult(&color_inc, 1 / ((double)v0->y - v1->y));
 	while ((b->Y_inc < 0 && y > (int)v1->y) \
 			|| (!(b->Y_inc < 0) && y < (int)v1->y))
-		while (y != (int)v1->y)
+	{
+		ui_put_pixel_to_img(img, x, y, color.hex);
+		color = color_add(&color, &color_inc);
+		if ((b->err += b->err_inc) >= 0)
 		{
-			ui_put_pixel_to_img(img, x, y, color.hex);
-			color = color_add(&color, &color_inc);
-			if ((b->err += b->err_inc) >= 0)
-			{
-				x += b->X_inc;
-				b->err += b->err_dec;
-			}
-			y += b->Y_inc;
+			x += b->X_inc;
+			b->err += b->err_dec;
 		}
+		y += b->Y_inc;
+	}
 	ui_put_pixel_to_img(img, x, y, color.hex);
 }
 
@@ -65,7 +64,6 @@ static void		fdf_bresenham_horizontal_octant(t_img *img, t_bresenham *b, \
 	int		y;
 	t_color	color;
 	t_color	color_inc;
-
 
 	x = (int)v0->x;
 	y = (int)v0->y;
