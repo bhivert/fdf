@@ -26,7 +26,7 @@ void	fdf_key_hook(void *param, int code, int type)
 
 int		fdf_create_ui(t_env *e)
 {
-	if (!(e->win = ui_new_window(e->av[0], 800, 600)))
+	if (!(e->win = ui_new_window(e->av[0], 1600, 1200)))
 		return (ft_printf("%s unable to create windows.\n", e->av[0]), -1);
 	ui_window_set_color(e->win, 0x000000);
 	e->img_id = ui_new_image(e->win, e->win->size.width, e->win->size.height);
