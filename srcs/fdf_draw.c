@@ -8,7 +8,7 @@ static void	fdf_convert_to_proj(t_env *e, t_vertex *vtx)
 	*vtx = vertex_mult_matrix(vtx, e->trans_mtx0);
 	*vtx = vertex_mult_matrix(vtx, e->rot_X_mtx);
 	*vtx = vertex_mult_matrix(vtx, e->rot_Z_mtx);
-	*vtx = vertex_mult_matrix(vtx, e->iso_proj);
+//	*vtx = vertex_mult_matrix(vtx, e->iso_proj);
 	*vtx = vertex_mult_matrix(vtx, e->scale_mtx);
 	*vtx = vertex_mult_matrix(vtx, e->trans_mtx1);
 }
