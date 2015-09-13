@@ -6,7 +6,7 @@
 #    By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/01 16:50:57 by bhivert           #+#    #+#              #
-#    Updated: 2015/01/01 16:50:57 by bhivert          ###   ########.fr        #
+#    Updated: 2015/09/09 15:48:53 by bhivert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re, _make, _make_clean, _make_fclean
@@ -35,9 +35,9 @@ LIBS		=	-lui \
 			-l3d \
 			-lft \
 			-lm \
+			-framework OpenGL \
+			-framework AppKit \
 			-lmlx \
-			-lXext \
-			-lX11 \
 			-lpthread \
 
 INCS_FLAGS	=	-Iincludes \

@@ -1,8 +1,6 @@
 
 #include "fdf.h"
 
-
-
 static void	fdf_exit(t_env *e)
 {
 	ft_set_content_destroy(e->file, (void(*)(void *))&ft_delete_container);
