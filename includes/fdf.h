@@ -19,14 +19,7 @@ typedef struct	s_env
 	int			max_value;
 	t_win		*win;
 	int			img_id;
-	int			rot_X;
-	int			rot_Z;
 	int			scaling;
-	double		**scale_mtx;
-	double		**trans_mtx0;
-	double		**trans_mtx1;
-	double		**rot_X_mtx;
-	double		**rot_Z_mtx;
 	double		**iso_proj;
 }				t_env;
 

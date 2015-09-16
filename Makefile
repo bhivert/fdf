@@ -35,10 +35,12 @@ LIBS		=	-lui \
 			-l3d \
 			-lft \
 			-lm \
-			-framework OpenGL \
-			-framework AppKit \
 			-lmlx \
-			-lpthread \
+			-lXext \
+			-lX11
+#			-framework OpenGL \
+#			-framework AppKit \
+#			-lpthread \
 
 INCS_FLAGS	=	-Iincludes \
 
