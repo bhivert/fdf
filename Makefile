@@ -37,10 +37,11 @@ LIBS		=	-lui \
 			-lm \
 			-lmlx \
 			-lXext \
-			-lX11
+			-lX11 \
+			-lpthread \
+
 #			-framework OpenGL \
 #			-framework AppKit \
-#			-lpthread \
 
 INCS_FLAGS	=	-Iincludes \
 

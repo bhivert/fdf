@@ -8,32 +8,57 @@ static void	fdf_exit(t_env *e)
 	exit(EXIT_SUCCESS);
 }
 
+void		fdf_update_model(t_env *e, double **rot_x, double **rot_z)
+{
+	double	**tmp;
+
+	if (rot_x)
+	{
+		e->up = vector_mult_matrix(&e->up, rot_x);
+		tmp = matrix_mult(e->model, rot_x);
+		free_matrix(e->model);
+		e->model = tmp;
+		free_matrix(rot_x);
+	}
+	if (rot_z)
+	{
+		e->right = vector_mult_matrix(&e->right, rot_z);
+		tmp = matrix_mult(e->model, rot_z);
+		free_matrix(e->model);
+		e->model = tmp;
+		free_matrix(rot_z);
+	}
+}
+
 void		fdf_key_hook(void *param, int code, int type)
 {
 	t_env	*e;
+	double	**tmp_rot_x;
+	double	**tmp_rot_z;
 
 	e = (t_env *)param;
-	if (type == 2)
+	if (tmp_rot_x = NULL, type == 2)
 		return ;
-	if (code == UI_KEY_ESC)
+	if (tmp_rot_z = NULL, code == UI_KEY_ESC)
 		fdf_exit(e);
 	else if (code == UI_KEY_RIGHT || code == UI_KEY_PAD_6)
-		e->rot_Z = (e->rot_Z + 360 - 15) % 360;
+		tmp_rot_z = matrix_axis_rot(e->up.x, e->up.y, e->up.z, rad(10));
 	else if (code == UI_KEY_LEFT || code == UI_KEY_PAD_4)
-		e->rot_Z = (e->rot_Z + 15) % 360;
+		tmp_rot_z = matrix_axis_rot(e->up.x, e->up.y, e->up.z, rad(-10));
 	else if (code == UI_KEY_UP || code == UI_KEY_PAD_8)
-		e->rot_X = (e->rot_X + 15) % 360;
+		tmp_rot_x= matrix_axis_rot(e->right.x, e->right.y, e->right.z, rad(-10));
 	else if (code == UI_KEY_DOWN || code == UI_KEY_PAD_5)
-		e->rot_X = (e->rot_X + 360 - 15) % 360;
+		tmp_rot_x = matrix_axis_rot(e->right.x, e->right.y, e->right.z, rad(10));
 	else if (code == UI_KEY_PUP || code == UI_KEY_PAD_P)
 		++e->scaling;
 	else if (code == UI_KEY_PDW || code == UI_KEY_PAD_M)
 		e->scaling -= (e->scaling > 1) ? 1 : 0;
+	fdf_update_model(e, tmp_rot_x, tmp_rot_z);
 }
 
 int			fdf_create_ui(t_env *e)
 {
-	if (!(e->win = ui_new_window(e->av[0], 1600, 1200)))
+	if (!(e->win = ui_new_window(e->av[0], 800, 900)))
 		return (ft_printf("%s unable to create windows.\n", e->av[0]), -1);
 	ui_window_set_color(e->win, 0x000000);
 	e->img_id = ui_new_image(e->win, e->win->size.width, e->win->size.height);

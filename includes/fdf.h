@@ -20,7 +20,13 @@ typedef struct	s_env
 	t_win		*win;
 	int			img_id;
 	int			scaling;
+	double		**scale_mtx;
+	t_vector	up;
+	t_vector	right;
+	double		**model;
+	double		**m2w;
 	double		**iso_proj;
+	double		**init;
 }				t_env;
 
 typedef struct	s_bresenham
