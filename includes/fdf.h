@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/09/17 09:42:47 by bhivert           #+#    #+#             */
+/*   Updated: 2015/09/17 09:43:28 by bhivert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
-#include "ft_printf.h"
-#include "ft_scanf.h"
-#include "ft_containers.h"
-#include "libui.h"
-#include "lib3d.h"
-#include <fcntl.h>
-#include <limits.h>
+# include "ft_printf.h"
+# include "ft_scanf.h"
+# include "ft_containers.h"
+# include "libui.h"
+# include "lib3d.h"
+# include <fcntl.h>
+# include <limits.h>
 
 typedef struct	s_env
 {
@@ -31,10 +43,10 @@ typedef struct	s_env
 
 typedef struct	s_bresenham
 {
-	int			dX;
-	int			dY;
-	int			X_inc;
-	int			Y_inc;
+	int			dx;
+	int			dy;
+	int			x_inc;
+	int			y_inc;
 	int			err;
 	int			err_inc;
 	int			err_dec;
