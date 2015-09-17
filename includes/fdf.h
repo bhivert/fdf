@@ -6,7 +6,7 @@
 /*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 09:42:47 by bhivert           #+#    #+#             */
-/*   Updated: 2015/09/17 09:43:28 by bhivert          ###   ########.fr       */
+/*   Updated: 2015/09/17 11:15:32 by bhivert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ typedef struct	s_env
 
 typedef struct	s_bresenham
 {
-	int			dx;
-	int			dy;
-	int			x_inc;
-	int			y_inc;
+	int			dX;
+	int			dY;
+	int			X_inc;
+	int			Y_inc;
 	int			err;
 	int			err_inc;
 	int			err_dec;
