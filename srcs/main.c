@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/09/20 13:47:38 by bhivert           #+#    #+#             */
+/*   Updated: 2015/09/20 13:47:50 by bhivert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
 
@@ -13,7 +24,7 @@ void		init_env(t_env *e, int ac, char **av)
 	e->img_id = -1;
 	e->scaling = 1;
 	e->up = new_vector(0, 0, 1, NULL);
-	e->right = new_vector(1, 0, 0, NULL);
+	e->rt = new_vector(1, 0, 0, NULL);
 	e->model = NULL;
 	e->init = NULL;
 	e->iso_proj = NULL;

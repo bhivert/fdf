@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_draw.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/09/20 13:46:20 by bhivert           #+#    #+#             */
+/*   Updated: 2015/09/20 13:49:10 by bhivert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	fdf_convert_to_proj(t_env *e, t_vertex *vtx)
+static void		fdf_convert_to_proj(t_env *e, t_vertex *vtx)
 {
 	*vtx = vertex_mult_matrix(vtx, e->init);
 	*vtx = vertex_mult_matrix(vtx, e->model);
@@ -16,25 +27,25 @@ t_color			set_color(t_env *e, double z)
 	t_color		min;
 	t_color		zero;
 	t_color		ret;
-	double		fact_Z;
+	double		fact_z;
 
 	max = new_color_hex(0xE67E30);
 	min = new_color_hex(0x003BFF);
 	zero = new_color_hex(0xFFFFFF);
-	fact_Z = z * 100 / e->max_value;
+	fact_z = z * 100 / e->max_value;
 	if (z == 0)
 		return (zero);
 	else if (z < 0)
 	{
-		ret = new_color_rgb(zero.rgb[E_RED] - (fact_Z * (min.rgb[E_RED] - zero.rgb[E_RED]) / 100), \
-				zero.rgb[E_GREEN] - (fact_Z * (min.rgb[E_GREEN] - zero.rgb[E_GREEN]) / 100), \
-				zero.rgb[E_BLUE] - (fact_Z * (min.rgb[E_BLUE] - zero.rgb[E_BLUE]) / 100));
+		ret = new_color_rgb(zero.rgb[E_RED] - (fact_z * (min.rgb[E_RED] - zero.rgb[E_RED]) / 100), \
+				zero.rgb[E_GREEN] - (fact_z * (min.rgb[E_GREEN] - zero.rgb[E_GREEN]) / 100), \
+				zero.rgb[E_BLUE] - (fact_z * (min.rgb[E_BLUE] - zero.rgb[E_BLUE]) / 100));
 	}
 	else
 	{
-		ret = new_color_rgb(zero.rgb[E_RED] + (fact_Z * (max.rgb[E_RED] - zero.rgb[E_RED]) / 100), \
-				zero.rgb[E_GREEN] + (fact_Z * (max.rgb[E_GREEN] - zero.rgb[E_GREEN]) / 100), \
-				zero.rgb[E_BLUE] + (fact_Z * (max.rgb[E_BLUE] - zero.rgb[E_BLUE]) / 100));
+		ret = new_color_rgb(zero.rgb[E_RED] + (fact_z * (max.rgb[E_RED] - zero.rgb[E_RED]) / 100), \
+				zero.rgb[E_GREEN] + (fact_z * (max.rgb[E_GREEN] - zero.rgb[E_GREEN]) / 100), \
+				zero.rgb[E_BLUE] + (fact_z * (max.rgb[E_BLUE] - zero.rgb[E_BLUE]) / 100));
 	}
 	return (ret);
 }

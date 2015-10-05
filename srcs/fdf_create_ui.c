@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_create_ui.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/09/20 13:43:32 by bhivert           #+#    #+#             */
+/*   Updated: 2015/09/20 13:45:40 by bhivert          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
 
@@ -22,7 +33,7 @@ void		fdf_update_model(t_env *e, double **rot_x, double **rot_z)
 	}
 	if (rot_z)
 	{
-		e->right = vector_mult_matrix(&e->right, rot_z);
+		e->rt = vector_mult_matrix(&e->rt, rot_z);
 		tmp = matrix_mult(e->model, rot_z);
 		free_matrix(e->model);
 		e->model = tmp;
@@ -46,9 +57,9 @@ void		fdf_key_hook(void *param, int code, int type)
 	else if (code == UI_KEY_LEFT || code == UI_KEY_PAD_4)
 		tmp_rot_z = matrix_axis_rot(e->up.x, e->up.y, e->up.z, rad(-10));
 	else if (code == UI_KEY_UP || code == UI_KEY_PAD_8)
-		tmp_rot_x= matrix_axis_rot(e->right.x, e->right.y, e->right.z, rad(-10));
+		tmp_rot_x = matrix_axis_rot(e->rt.x, e->rt.y, e->rt.z, rad(-10));
 	else if (code == UI_KEY_DOWN || code == UI_KEY_PAD_5)
-		tmp_rot_x = matrix_axis_rot(e->right.x, e->right.y, e->right.z, rad(10));
+		tmp_rot_x = matrix_axis_rot(e->rt.x, e->rt.y, e->rt.z, rad(10));
 	else if (code == UI_KEY_PUP || code == UI_KEY_PAD_P)
 		++e->scaling;
 	else if (code == UI_KEY_PDW || code == UI_KEY_PAD_M)

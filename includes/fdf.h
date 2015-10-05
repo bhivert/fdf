@@ -6,7 +6,7 @@
 /*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 09:42:47 by bhivert           #+#    #+#             */
-/*   Updated: 2015/09/17 11:15:32 by bhivert          ###   ########.fr       */
+/*   Updated: 2015/09/20 13:45:07 by bhivert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct	s_env
 	t_win		*win;
 	int			img_id;
 	int			scaling;
+	int			exit_id;
 	double		**scale_mtx;
 	t_vector	up;
-	t_vector	right;
+	t_vector	rt;
 	double		**model;
 	double		**m2w;
 	double		**iso_proj;
@@ -43,10 +44,10 @@ typedef struct	s_env
 
 typedef struct	s_bresenham
 {
-	int			dX;
-	int			dY;
-	int			X_inc;
-	int			Y_inc;
+	int			dx;
+	int			dy;
+	int			x_inc;
+	int			y_inc;
 	int			err;
 	int			err_inc;
 	int			err_dec;
