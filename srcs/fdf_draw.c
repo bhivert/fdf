@@ -21,35 +21,6 @@ static void		fdf_convert_to_proj(t_env *e, t_vertex *vtx)
 	*vtx = vertex_mult_matrix(vtx, e->m2w);
 }
 
-t_color			set_color(t_env *e, double z)
-{
-	t_color		max;
-	t_color		min;
-	t_color		zero;
-	t_color		ret;
-	double		fact_z;
-
-	max = new_color_hex(0xE67E30);
-	min = new_color_hex(0x003BFF);
-	zero = new_color_hex(0xFFFFFF);
-	fact_z = z * 100 / e->max_value;
-	if (z == 0)
-		return (zero);
-	else if (z < 0)
-	{
-		ret = new_color_rgb(zero.rgb[E_RED] - (fact_z * (min.rgb[E_RED] - zero.rgb[E_RED]) / 100), \
-				zero.rgb[E_GREEN] - (fact_z * (min.rgb[E_GREEN] - zero.rgb[E_GREEN]) / 100), \
-				zero.rgb[E_BLUE] - (fact_z * (min.rgb[E_BLUE] - zero.rgb[E_BLUE]) / 100));
-	}
-	else
-	{
-		ret = new_color_rgb(zero.rgb[E_RED] + (fact_z * (max.rgb[E_RED] - zero.rgb[E_RED]) / 100), \
-				zero.rgb[E_GREEN] + (fact_z * (max.rgb[E_GREEN] - zero.rgb[E_GREEN]) / 100), \
-				zero.rgb[E_BLUE] + (fact_z * (max.rgb[E_BLUE] - zero.rgb[E_BLUE]) / 100));
-	}
-	return (ret);
-}
-
 static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 {
 	t_vertex	v0;
@@ -62,7 +33,7 @@ static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 	color = set_color(e, value);
 	v0 = new_vertex(x, y, value, &color);
 	fdf_convert_to_proj(e, &v0);
-	if (line = ft_at_index(e->file, y), img && ft_at_index(*line, x + 1))
+	if ((line = ft_at_index(e->file, y)) && img && ft_at_index(*line, x + 1))
 	{
 		value = *(int *)ft_at_index(*line, x + 1);
 		color = set_color(e, value);
@@ -70,16 +41,13 @@ static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 		fdf_convert_to_proj(e, &v1);
 		fdf_bresenham(img, &v0, &v1);
 	}
-	if (img && (line = ft_at_index(e->file, y + 1)))
+	if (img && (line = ft_at_index(e->file, y + 1)) && ft_at_index(*line, x))
 	{
-		if (ft_at_index(*line, x))
-		{
-			value = *(int *)ft_at_index(*line, x);
-			color = set_color(e, value);
-			v1 = new_vertex(x, (y + 1), value, &color);
-			fdf_convert_to_proj(e, &v1);
-			fdf_bresenham(img, &v0, &v1);
-		}
+		value = *(int *)ft_at_index(*line, x);
+		color = set_color(e, value);
+		v1 = new_vertex(x, (y + 1), value, &color);
+		fdf_convert_to_proj(e, &v1);
+		fdf_bresenham(img, &v0, &v1);
 	}
 }
 
@@ -106,8 +74,9 @@ void			fdf_draw(int id, void *env)
 	e = (t_env *)env;
 	y = -1;
 	fdf_generate_matrix(e);
-	while (x = -1, ++y < ft_size(e->file))
+	while (++y < ft_size(e->file))
 	{
+		x = -1;
 		line = ft_at_index(e->file, y);
 		while (line && ++x < ft_size(*(t_container **)line))
 		{

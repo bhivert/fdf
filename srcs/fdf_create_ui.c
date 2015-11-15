@@ -48,9 +48,11 @@ void		fdf_key_hook(void *param, int code, int type)
 	double	**tmp_rot_z;
 
 	e = (t_env *)param;
-	if (tmp_rot_x = NULL, type == 2)
+	tmp_rot_x = NULL;
+	tmp_rot_z = NULL;
+	if (type == 2)
 		return ;
-	if (tmp_rot_z = NULL, code == UI_KEY_ESC)
+	if (code == UI_KEY_ESC)
 		fdf_exit(e);
 	else if (code == UI_KEY_RIGHT || code == UI_KEY_PAD_6)
 		tmp_rot_z = matrix_axis_rot(e->up.x, e->up.y, e->up.z, rad(10));
@@ -70,11 +72,17 @@ void		fdf_key_hook(void *param, int code, int type)
 int			fdf_create_ui(t_env *e)
 {
 	if (!(e->win = ui_new_window(e->av[0], 1600, 1200)))
-		return (ft_printf("%s unable to create windows.\n", e->av[0]), -1);
+	{
+		ft_printf("%s unable to create windows.\n", e->av[0]);
+		return (-1);
+	}
 	ui_window_set_color(e->win, 0x000000);
 	e->img_id = ui_new_image(e->win, e->win->size.width, e->win->size.height);
 	if (e->img_id == -1)
-		return (ft_printf("%s unable to create image.\n", e->av[0]), -1);
+	{
+		ft_printf("%s unable to create image.\n", e->av[0]);
+		return (-1);
+	}
 	ui_widget_set_color(e->win, e->img_id, 0x000000);
 	ui_window_set_key_hook(e->win, &fdf_key_hook, e);
 	ui_widget_set_hook_param(e->win, e->img_id, e->img_id, e);

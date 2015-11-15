@@ -56,6 +56,7 @@ typedef struct	s_bresenham
 int				fdf_get_file(t_env *e);
 int				fdf_create_ui(t_env *e);
 void			fdf_bresenham(t_img *img, t_vertex *v0, t_vertex *v1);
+t_color			set_color(t_env *e, double z);
 void			fdf_draw(int w_id, void *env);
 
 #endif

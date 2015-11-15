@@ -36,7 +36,10 @@ int			main(int ac, char **av)
 
 	init_env(&env, ac, av);
 	if (env.ac < 2)
-		return (ft_printf("%s file\n", env.av[0]), EXIT_SUCCESS);
+	{
+		ft_printf("%s file\n", env.av[0]);
+		return (EXIT_SUCCESS);
+	}
 	if ((fdf_get_file(&env) == -1) || (fdf_create_ui(&env) == -1))
 		return (EXIT_FAILURE);
 	env.init = matrix_trans(-((double)env.max_line / 2.0), \
