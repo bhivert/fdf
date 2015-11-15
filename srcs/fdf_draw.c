@@ -6,7 +6,7 @@
 /*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/20 13:46:20 by bhivert           #+#    #+#             */
-/*   Updated: 2015/09/20 13:49:10 by bhivert          ###   ########.fr       */
+/*   Updated: 2015/11/15 23:02:56 by bhivert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ static void		fdf_manage_segment(t_env *e, int x, int y, int value)
 		fdf_convert_to_proj(e, &v1);
 		fdf_bresenham(img, &v0, &v1);
 	}
-	if (img && (line = ft_at_index(e->file, y + 1)) && ft_at_index(*line, x))
-	{
-		value = *(int *)ft_at_index(*line, x);
-		color = set_color(e, value);
-		v1 = new_vertex(x, (y + 1), value, &color);
-		fdf_convert_to_proj(e, &v1);
-		fdf_bresenham(img, &v0, &v1);
-	}
+	if (!(img && (line = ft_at_index(e->file, y + 1)) && ft_at_index(*line, x)))
+		return ;
+	value = *(int *)ft_at_index(*line, x);
+	color = set_color(e, value);
+	v1 = new_vertex(x, (y + 1), value, &color);
+	fdf_convert_to_proj(e, &v1);
+	fdf_bresenham(img, &v0, &v1);
 }
 
 static void		fdf_generate_matrix(t_env *e)
