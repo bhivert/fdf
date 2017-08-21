@@ -6,7 +6,7 @@
 /*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/20 13:46:20 by bhivert           #+#    #+#             */
-/*   Updated: 2015/09/20 13:49:10 by bhivert          ###   ########.fr       */
+/*   Updated: 2016/06/15 19:43:47 by bhivert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ t_color			set_color(t_env *e, double z)
 	t_color		ret;
 	double		fact_z;
 
-	max = new_color_hex(0xE67E30);
-	min = new_color_hex(0x003BFF);
-	zero = new_color_hex(0xFFFFFF);
+//	max = new_color_hex(0xE67E30);
+//	min = new_color_hex(0x003BFF);
+	max = new_color_hex(0x663300);
+	min = new_color_hex(0x0066FF);
+	zero = new_color_hex(0x006600);
 	fact_z = z * 100 / e->max_value;
 	if (z == 0)
 		return (zero);

@@ -6,7 +6,7 @@
 /*   By: bhivert <bhivert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/20 13:43:32 by bhivert           #+#    #+#             */
-/*   Updated: 2015/09/20 13:45:40 by bhivert          ###   ########.fr       */
+/*   Updated: 2016/06/15 19:37:58 by bhivert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		fdf_key_hook(void *param, int code, int type)
 
 int			fdf_create_ui(t_env *e)
 {
-	if (!(e->win = ui_new_window(e->av[0], 1600, 1200)))
+	if (!(e->win = ui_new_window(e->av[0], 1200, 1200)))
 	{
 		ft_printf("%s unable to create windows.\n", e->av[0]);
 		return (-1);
